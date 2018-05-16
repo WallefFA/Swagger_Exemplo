@@ -4,6 +4,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -38,12 +39,22 @@ public class SwaggerConfig extends WebMvcConfigurationSupport{
 	private ApiInfo info() {
 		return new ApiInfoBuilder()
 				.title("API")
-				.description("API for Stock Online with Spring Boot and REST")
-				.contact(new Contact("Wallef", "github.com/WallefFA", "wallef.fa@gmail.com"))
+				.description("API for Stock Online")
+				.contact(new Contact("Wallef", "https://github.com/WallefFA", "wallef.fa@gmail.com"))
 				.license("Apache License Version 2.0")
 				.licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
 				.version("1.0.0")
 				.build();
 				
 	}
+	
+	/**
+	 * Configurando página html da documentação Swagger.
+	 */
+	
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+    }
 }

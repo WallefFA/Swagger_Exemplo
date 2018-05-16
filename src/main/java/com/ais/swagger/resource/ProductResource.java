@@ -40,7 +40,7 @@ public class ProductResource {
 	}
 	
 	@ApiOperation(value = "Save products.")
-	@PostMapping(produces="application/json")
+	@PostMapping
 	public ResponseEntity<Void> save(@RequestBody Product product) {
 		repository.save(product);
 		
@@ -48,7 +48,7 @@ public class ProductResource {
 	}
 	
 	@ApiOperation(value = "Delete products.")
-	@DeleteMapping(value="/{id}" ,produces="application/json")
+	@DeleteMapping(value="/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		Product product = repository.findOne(id);
 		
@@ -61,7 +61,7 @@ public class ProductResource {
 	}
 	
 	@ApiOperation(value = "Update products.")
-	@PutMapping(value="/{id}", produces="application/json")
+	@PutMapping(value="/{id}")
 	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Product actual) {
 		Product product = repository.findOne(id);
 		
