@@ -25,20 +25,20 @@ public class SwaggerConfig extends WebMvcConfigurationSupport{
 	@Bean
 	public Docket docket() {
 		return new Docket(DocumentationType.SWAGGER_2)
+				.useDefaultResponseMessages(false)
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("com.ais.swagger"))
 				.paths(regex("/products.*"))
 				.build()
-				.apiInfo(info());
+				.apiInfo(info());		
 	}
-	
-	
+		
 	/**
 	 * Inserindo as informações sobre a API"
 	 */
 	private ApiInfo info() {
 		return new ApiInfoBuilder()
-				.title("API")
+				.title("Stock API")
 				.description("API for Stock Online")
 				.contact(new Contact("Wallef", "https://github.com/WallefFA", "wallef.fa@gmail.com"))
 				.license("Apache License Version 2.0")
@@ -56,5 +56,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport{
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
+ 
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }
